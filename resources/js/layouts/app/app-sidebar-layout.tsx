@@ -8,6 +8,8 @@ export default function AppSidebarLayout({
     children,
     breadcrumbs = [],
 }: AppLayoutProps) {
+    console.log(breadcrumbs);
+
     return (
         <AppShell variant="sidebar">
             <AppSidebar />
