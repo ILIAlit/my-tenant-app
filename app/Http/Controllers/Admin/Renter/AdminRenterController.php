@@ -15,7 +15,7 @@ class AdminRenterController extends Controller
         $renters = User::where('role', UserRole::RENTER)->get();
 
         return Inertia::render('admin/renter', [
-            'users' => $renters,
+            'renters' => $renters,
         ]);
     }
 
@@ -27,6 +27,15 @@ class AdminRenterController extends Controller
 
         return Inertia::render('admin/renter', [
             'users' => $renters,
+        ]);
+    }
+
+    public function updateRenters(Request $request)
+    {
+        $renters = User::where('role', UserRole::RENTER->value)->get();
+
+        return Inertia::render('admin/renter', [
+            'renters' => $renters,
         ]);
     }
 }

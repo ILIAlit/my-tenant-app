@@ -8,10 +8,11 @@ import {
     // DollarSign,
     // BarChart3,
     // Settings,
-    // MessageSquare,
+    MessageSquare,
     // ArrowLeftRight,
 } from 'lucide-react';
 import { dashboard } from '@/routes';
+import news from '@/routes/news';
 import renters from '@/routes/renters';
 import type { NavItem } from '@/types';
 
@@ -41,6 +42,11 @@ export const mainAdminNavItems: NavItem[] = [
         href: dashboard(),
         icon: FileText,
     },
+    {
+        title: 'Объявления',
+        href: news.get(),
+        icon: MessageSquare,
+    },
 ];
 
 export const mainRenterNavItems: NavItem[] = [
@@ -48,5 +54,10 @@ export const mainRenterNavItems: NavItem[] = [
         title: 'Главная',
         href: dashboard(),
         icon: Home,
+    },
+    {
+        title: 'Объявления',
+        href: news.get(),
+        icon: MessageSquare,
     },
 ];

@@ -1,12 +1,16 @@
 import { Head, usePage } from '@inertiajs/react';
-import { Plus } from 'lucide-react';
+import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import renters from '@/routes/renters';
+import type { User } from '@/types';
 //import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 
+type PageProps = {
+    renters: User[];
+};
+
 export default function Dashboard() {
-    const page = usePage();
-    console.log(page);
+    const { renters } = usePage<PageProps>().props;
 
     return (
         <>
@@ -61,68 +65,51 @@ export default function Dashboard() {
                                     </th>
                                 </tr>
                             </thead>
-                            {/* <tbody>
-                                {TENANTS.map((tenant) => (
+                            <tbody>
+                                {renters.map((renter) => (
                                     <tr
-                                        key={tenant.id}
+                                        key={renter.id}
                                         className="border-b border-gray-100 hover:bg-gray-50"
                                     >
                                         <td className="px-6 py-4 font-medium">
-                                            {tenant.name}
+                                            {renter.last_name} {renter.name}{' '}
+                                            {renter.middle_name}
+                                        </td>
+                                        <td className="px-6 py-4">{}</td>
+                                        <td className="px-6 py-4">
+                                            {renter.phone}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {tenant.apartment}
+                                            {renter.email}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            {tenant.phone}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {tenant.email}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {tenant.rent.toLocaleString()} ₽
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <span
-                                                className={
-                                                    tenant.debt > 0
-                                                        ? 'font-medium text-red-600'
-                                                        : 'text-gray-400'
-                                                }
-                                            >
-                                                {tenant.debt > 0
-                                                    ? `${tenant.debt.toLocaleString()} ₽`
-                                                    : '—'}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {getStatusBadge(tenant.status)}
-                                        </td>
+                                        <td className="px-6 py-4">{} ₽</td>
+                                        <td className="px-6 py-4"></td>
+                                        <td className="px-6 py-4">{}</td>
                                         <td className="px-6 py-4">
                                             <div className="flex items-center justify-end gap-2">
-                                                <button className="rounded p-1 hover:bg-gray-100">
+                                                <Button className="rounded p-1 hover:bg-gray-100">
                                                     <Eye
                                                         size={18}
                                                         className="text-gray-600"
                                                     />
-                                                </button>
-                                                <button className="rounded p-1 hover:bg-gray-100">
+                                                </Button>
+                                                <Button className="rounded p-1 hover:bg-gray-100">
                                                     <Edit
                                                         size={18}
                                                         className="text-gray-600"
                                                     />
-                                                </button>
-                                                <button className="rounded p-1 hover:bg-gray-100">
+                                                </Button>
+                                                <Button className="rounded p-1 hover:bg-gray-100">
                                                     <Trash2
                                                         size={18}
                                                         className="text-red-600"
                                                     />
-                                                </button>
+                                                </Button>
                                             </div>
                                         </td>
                                     </tr>
                                 ))}
-                            </tbody> */}
+                            </tbody>
                         </table>
                     </div>
                 </div>
