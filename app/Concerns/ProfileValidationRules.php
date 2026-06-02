@@ -16,8 +16,12 @@ trait ProfileValidationRules
     protected function profileRules(?int $userId = null): array
     {
         return [
-            'name' => $this->nameRules(),
+            'name' => $this->fioRules(),
             'email' => $this->emailRules($userId),
+            'login' => $this->nameRules(),
+            'last_name' => $this->fioRules(),
+            'middle_name' => $this->fioRules(),
+            'phone' => $this->phoneRules(),
         ];
     }
 
@@ -29,6 +33,24 @@ trait ProfileValidationRules
     protected function nameRules(): array
     {
         return ['required', 'string', 'max:255'];
+    }
+
+    /**
+     * Get the validation rules used to validate user fio.
+     *
+     * @return array<int, ValidationRule|array<mixed>|string>
+     */
+    protected function fioRules(): array
+    {
+        return ['string', 'max:255'];
+    }
+
+    protected function phoneRules(): array
+    {
+        return [
+            'string',
+            'regex:/^\+375(25|29|33|44)\d{7}$/'
+        ];
     }
 
     /**

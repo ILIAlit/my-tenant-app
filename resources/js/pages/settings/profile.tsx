@@ -26,15 +26,15 @@ export default function Profile({
 
     return (
         <>
-            <Head title="Profile settings" />
+            <Head title="Настройка профиля" />
 
-            <h1 className="sr-only">Profile settings</h1>
+            <h1 className="sr-only">Настройка профиля</h1>
 
             <div className="space-y-6">
                 <Heading
                     variant="small"
-                    title="Profile"
-                    description="Update your name and email address"
+                    title="Профиль"
+                    description="Обновить данные профиля"
                 />
 
                 <Form
@@ -47,26 +47,26 @@ export default function Profile({
                     {({ processing, errors }) => (
                         <>
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Логин</Label>
 
                                 <Input
                                     id="name"
                                     className="mt-1 block w-full"
-                                    defaultValue={auth.user.name}
-                                    name="name"
+                                    defaultValue={auth.user.login}
+                                    name="login"
                                     required
-                                    autoComplete="name"
-                                    placeholder="Full name"
+                                    autoComplete="login"
+                                    placeholder="логин"
                                 />
 
                                 <InputError
                                     className="mt-2"
-                                    message={errors.name}
+                                    message={errors.login}
                                 />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="email">Почта</Label>
 
                                 <Input
                                     id="email"
@@ -76,7 +76,7 @@ export default function Profile({
                                     name="email"
                                     required
                                     autoComplete="username"
-                                    placeholder="Email address"
+                                    placeholder="почта"
                                 />
 
                                 <InputError
@@ -110,12 +110,84 @@ export default function Profile({
                                     </div>
                                 )}
 
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Номер телефона</Label>
+
+                                <Input
+                                    id="phone"
+                                    className="mt-1 block w-full"
+                                    defaultValue={auth.user.phone}
+                                    name="phone"
+                                    autoComplete="userphone"
+                                    placeholder="+375255488776"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.phone}
+                                />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Имя</Label>
+
+                                <Input
+                                    id="name"
+                                    className="mt-1 block w-full"
+                                    defaultValue={auth.user.name}
+                                    name="name"
+                                    autoComplete="username"
+                                    placeholder="имя"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.name}
+                                />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Фамилия</Label>
+
+                                <Input
+                                    id="last_name"
+                                    className="mt-1 block w-full"
+                                    defaultValue={auth.user.last_name}
+                                    name="last_name"
+                                    autoComplete="username"
+                                    placeholder="фамилия"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.last_name}
+                                />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Отчество</Label>
+
+                                <Input
+                                    id="middle_name"
+                                    className="mt-1 block w-full"
+                                    defaultValue={auth.user.middle_name}
+                                    name="middle_name"
+                                    autoComplete="username"
+                                    placeholder="отчество"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.middle_name}
+                                />
+                            </div>
+
                             <div className="flex items-center gap-4">
                                 <Button
                                     disabled={processing}
                                     data-test="update-profile-button"
                                 >
-                                    Save
+                                    Сохранить
                                 </Button>
                             </div>
                         </>
