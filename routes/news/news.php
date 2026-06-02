@@ -12,6 +12,8 @@ use App\Enums\UserRole;
 
 Route::middleware([RoleMiddleware::class . ':' . UserRole::ADMIN->value])->group(function () {
     Route::post('news', [AdminNewsController::class, 'createNews'])->name('news.create');
+    Route::delete('news/{id}', [AdminNewsController::class, 'deleteNews'])->name('news.delete');
+    Route::put('news/{id}', [AdminNewsController::class, 'updateNews'])->name('news.update');
 });
 
 

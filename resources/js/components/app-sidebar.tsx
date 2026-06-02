@@ -13,6 +13,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { Role } from '@/enum/auth';
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 import { mainAdminNavItems, mainRenterNavItems } from '@/utils/navigation';
@@ -32,7 +33,7 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
     const page = usePage();
-    const userRole: 'admin' | 'renter' = page.props.auth.user.role;
+    const userRole = page.props.auth.user.role as Role;
 
     return (
         <Sidebar collapsible="icon" variant="inset">
@@ -51,7 +52,7 @@ export function AppSidebar() {
             <SidebarContent>
                 <NavMain
                     items={
-                        userRole === 'admin'
+                        userRole === Role.Admin
                             ? mainAdminNavItems
                             : mainRenterNavItems
                     }

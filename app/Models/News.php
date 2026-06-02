@@ -15,7 +15,7 @@ class News extends Model
     use HasFactory;
 
     protected $casts = [
-        'date' => 'date',
+        'date' => 'datetime:Y-m-d',
     ];
     public function user()
     {
