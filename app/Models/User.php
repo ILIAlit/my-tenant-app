@@ -13,6 +13,8 @@ use Laravel\Fortify\Contracts\PasskeyUser;
 use Laravel\Fortify\PasskeyAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Models\News;
+use App\Models\Rooms;
+use App\Enums\UserRole;
 
 #[Fillable(['name', 'email', 'password', 'role', 'login', 'last_name', 'middle_name', 'phone'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
@@ -38,5 +40,15 @@ class User extends Authenticatable implements PasskeyUser
     public function news()
     {
         return $this->hasMany(News::class);
+    }
+
+    public function rooms()
+    {
+        return $this->hasMany(Rooms::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::ADMIN->value;
     }
 }
