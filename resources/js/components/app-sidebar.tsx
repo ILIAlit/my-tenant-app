@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, FolderGit2 } from 'lucide-react';
+import { Send } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -20,14 +20,14 @@ import { mainAdminNavItems, mainRenterNavItems } from '@/utils/navigation';
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
+        title: 'Канал объявлений',
         href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
+        icon: Send,
     },
     {
-        title: 'Documentation',
+        title: 'Чат жильцов',
         href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        icon: Send,
     },
 ];
 
@@ -48,7 +48,6 @@ export function AppSidebar() {
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-
             <SidebarContent>
                 <NavMain
                     items={
@@ -58,7 +57,6 @@ export function AppSidebar() {
                     }
                 />
             </SidebarContent>
-
             <SidebarFooter>
                 <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />

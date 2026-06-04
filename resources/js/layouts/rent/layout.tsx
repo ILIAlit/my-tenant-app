@@ -1,50 +1,33 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
 import { Button } from '@/components/ui/button';
 import PageHeader from '@/components/ui/page-header';
 import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cn, toUrl } from '@/lib/utils';
-import { edit as editAppearance } from '@/routes/appearance';
 import rooms from '@/routes/rooms';
 import {} from '@/routes/security';
-import type { NavItem, Rooms } from '@/types';
+import type { NavItem } from '@/types';
 
-type PageProps = {
-    room: Rooms;
-};
-
-export default function RoomsLayout({ children }: PropsWithChildren) {
+export default function RentLayout({ children }: PropsWithChildren) {
     const { isCurrentOrParentUrl } = useCurrentUrl();
-
-    const page = usePage<PageProps>();
-    const { room } = page.props;
-    const roomId = room.id;
 
     const sidebarNavItems: NavItem[] = [
         {
-            title: 'Изменить данные',
-            href: rooms.getUpdate(roomId),
+            title: 'Комнаты',
+            href: rooms.getRenterRooms(),
             icon: null,
         },
         {
-            title: 'Добавить арендатора',
-            href: rooms.getAddRenterToRoom(roomId),
-            icon: null,
-        },
-        {
-            title: 'Добавить услуги',
-            href: editAppearance(),
+            title: 'Гаражи',
+            href: '#',
             icon: null,
         },
     ];
 
     return (
         <>
-            <PageHeader
-                title="Настройки комнаты"
-                description="Управление информацией о комнате и её арендаторах."
-            />
+            <PageHeader title="Аренда" description="Аренда комнат и гаражей" />
             <div className="flex flex-col lg:flex-row lg:space-x-12">
                 <aside className="w-full max-w-xl lg:w-48">
                     <nav
@@ -74,10 +57,8 @@ export default function RoomsLayout({ children }: PropsWithChildren) {
 
                 <Separator className="my-6 lg:hidden" />
 
-                <div className="flex-1 md:max-w-2xl">
-                    <section className="max-w-xl space-y-12">
-                        {children}
-                    </section>
+                <div className="flex-1">
+                    <section className="space-y-12">{children}</section>
                 </div>
             </div>
         </>

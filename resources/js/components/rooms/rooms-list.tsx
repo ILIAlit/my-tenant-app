@@ -69,9 +69,11 @@ export default function RoomsList() {
                                 <th className="px-6 py-3 text-left text-sm font-medium text-gray-600">
                                     Последний ремонт
                                 </th>
-                                <th className="px-6 py-3 text-right text-sm font-medium text-gray-600">
-                                    Действия
-                                </th>
+                                {user.role === Role.Admin && (
+                                    <th className="px-6 py-3 text-right text-sm font-medium text-gray-600">
+                                        Действия
+                                    </th>
+                                )}
                             </tr>
                         </thead>
                         <tbody>
@@ -109,9 +111,9 @@ export default function RoomsList() {
                                                   ).toLocaleDateString('ru-RU')
                                                 : '—'}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center justify-end gap-2">
-                                                {user.role === Role.Admin && (
+                                        {user.role === Role.Admin && (
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center justify-end gap-2">
                                                     <>
                                                         <Link
                                                             href={rooms.getUpdate(
@@ -135,9 +137,9 @@ export default function RoomsList() {
                                                             <Trash2 size={16} />
                                                         </Link>
                                                     </>
-                                                )}
-                                            </div>
-                                        </td>
+                                                </div>
+                                            </td>
+                                        )}
                                     </tr>
                                 ))
                             )}
