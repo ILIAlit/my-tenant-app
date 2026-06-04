@@ -1,25 +1,17 @@
 import { Link, usePage } from '@inertiajs/react';
 import { Edit, Trash2 } from 'lucide-react';
-import { useState } from 'react';
-import UpdateRoomForm from '@/components/rooms/update-room-form';
-import { Button } from '@/components/ui/button';
 import { Role } from '@/enum/auth';
 import rooms from '@/routes/rooms';
 import type { Rooms as RoomType, User } from '@/types';
 
 type PageProps = {
     auth: User;
+    rooms: RoomType[];
 };
 
-export default function RoomsList({ roomItems }: { roomItems: RoomType[] }) {
-    const { user } = usePage<PageProps>().props.auth;
-    const [selectedRoom, setSelectedRoom] = useState<RoomType | null>(null);
-    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-
-    const handleEditClick = (room: RoomType) => {
-        setSelectedRoom(room);
-        setIsUpdateModalOpen(true);
-    };
+export default function RoomsList() {
+    const { auth, rooms: roomItems } = usePage<PageProps>().props;
+    const user = auth.user;
 
     const getStatusBadge = (status: string) => {
         const statusMap: Record<
@@ -121,17 +113,17 @@ export default function RoomsList({ roomItems }: { roomItems: RoomType[] }) {
                                             <div className="flex items-center justify-end gap-2">
                                                 {user.role === Role.Admin && (
                                                     <>
-                                                        <Button
-                                                            onClick={() =>
-                                                                handleEditClick(
-                                                                    room,
-                                                                )
-                                                            }
+                                                        <Link
+                                                            href={rooms.getUpdate(
+                                                                room.id,
+                                                            )}
+                                                            as="button"
+                                                            method="get"
                                                             className="flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                         >
                                                             <Edit size={16} />
                                                             Изменить
-                                                        </Button>
+                                                        </Link>
                                                         <Link
                                                             href={rooms.delete(
                                                                 room.id,
@@ -153,13 +145,6 @@ export default function RoomsList({ roomItems }: { roomItems: RoomType[] }) {
                     </table>
                 </div>
             </div>
-            {selectedRoom && (
-                <UpdateRoomForm
-                    room={selectedRoom}
-                    open={isUpdateModalOpen}
-                    onOpenChange={setIsUpdateModalOpen}
-                />
-            )}
         </>
     );
 }

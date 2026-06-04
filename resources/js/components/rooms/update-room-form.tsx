@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { Rooms } from '@/types/rooms';
+import type { Rooms } from '@/types/rooms/rooms';
 
 type UpdateRoomFormProps = {
     room: Rooms;

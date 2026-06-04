@@ -5,6 +5,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\Admin\Renter\AdminRenterController;
+use App\Http\Resources\RenterResource;
 use App\Enums\UserRole;
 
 
