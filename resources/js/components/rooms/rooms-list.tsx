@@ -77,7 +77,7 @@ export default function RoomsList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {roomItems.length === 0 ? (
+                            {!roomItems.length ? (
                                 <tr>
                                     <td
                                         colSpan={6}
