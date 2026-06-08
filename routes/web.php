@@ -13,3 +13,4 @@ require __DIR__ . '/renter/renter.php';
 require __DIR__ . '/news/news.php';
 require __DIR__ . '/rooms/rooms.php';
 require __DIR__ . '/amenities/amenities.php';
+require __DIR__ . '/invoices/invoices.php';

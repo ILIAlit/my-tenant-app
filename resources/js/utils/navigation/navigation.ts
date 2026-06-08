@@ -4,8 +4,8 @@ import {
     Users,
     FileText,
     CircleDollarSign,
-    // CreditCard,
-    // Activity,
+    CreditCard,
+    //Activity,
     // DollarSign,
     // BarChart3,
     // Settings,
@@ -13,6 +13,7 @@ import {
     // ArrowLeftRight,
 } from 'lucide-react';
 import { dashboard } from '@/routes';
+import invoices from '@/routes/invoices';
 import news from '@/routes/news';
 import renters from '@/routes/renters';
 import rooms from '@/routes/rooms';
@@ -61,6 +62,16 @@ export const mainRenterNavItems: NavItem[] = [
         title: 'Аренда',
         href: rooms.getRenterRooms(),
         icon: CircleDollarSign,
+    },
+    {
+        title: 'Начисления',
+        href: invoices.get(),
+        icon: FileText,
+    },
+    {
+        title: 'Платежи',
+        href: '#',
+        icon: CreditCard,
     },
     {
         title: 'Объявления',
