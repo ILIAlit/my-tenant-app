@@ -6,7 +6,9 @@ import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cn, toUrl } from '@/lib/utils';
 import amenities from '@/routes/amenities';
+import contracts from '@/routes/contracts';
 import rooms from '@/routes/rooms';
+import utilityReadings from '@/routes/utility-readings';
 
 import {} from '@/routes/security';
 import type { NavItem, Rooms } from '@/types';
@@ -38,6 +40,16 @@ export default function RoomsLayout({ children }: PropsWithChildren) {
             href: amenities.get(roomId),
             icon: null,
         },
+        {
+            title: 'Договоры',
+            href: contracts.adminGet(roomId),
+            icon: null,
+        },
+        {
+            title: 'Показания счётчиков',
+            href: utilityReadings.adminGet(roomId),
+            icon: null,
+        },
     ];
 
     return (
@@ -50,7 +62,7 @@ export default function RoomsLayout({ children }: PropsWithChildren) {
                 <aside className="w-full max-w-xl lg:w-48">
                     <nav
                         className="flex flex-col space-y-1 space-x-0"
-                        aria-label="Settings"
+                        aria-label="Настройки комнаты"
                     >
                         {sidebarNavItems.map((item, index) => (
                             <Button

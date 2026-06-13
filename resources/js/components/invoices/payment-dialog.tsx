@@ -59,7 +59,8 @@ export default function PaymentDialog({
                                     <div className="mt-2 rounded-lg border bg-muted p-3">
                                         <span className="text-lg font-semibold">
                                             {mode === 'full'
-                                                ? invoice.total_price
+                                                ? invoice.total_price -
+                                                  invoice.paid_price
                                                 : partialAmount || '0'}{' '}
                                             ₽
                                         </span>
@@ -87,13 +88,17 @@ export default function PaymentDialog({
                                         value={
                                             mode === 'partial'
                                                 ? partialAmount
-                                                : invoice.total_price
+                                                : invoice.total_price -
+                                                  invoice.paid_price
                                         }
                                         onChange={(e) =>
                                             setPartialAmount(e.target.value)
                                         }
                                         min="0.01"
-                                        max={invoice.total_price}
+                                        max={
+                                            invoice.total_price -
+                                            invoice.paid_price
+                                        }
                                         step="0.01"
                                     />
                                     <InputError
@@ -102,7 +107,8 @@ export default function PaymentDialog({
                                     />
                                     <p className="mt-1 text-xs text-muted-foreground">
                                         Максимальная сумма:{' '}
-                                        {invoice.total_price}
+                                        {invoice.total_price -
+                                            invoice.paid_price}
                                     </p>
                                 </div>
 
@@ -156,7 +162,7 @@ export default function PaymentDialog({
                                     Отмена
                                 </Button>
                                 <Button
-                                    onClick={handleClose}
+                                    //onClick={handleClose}
                                     disabled={processing}
                                 >
                                     Оплатить

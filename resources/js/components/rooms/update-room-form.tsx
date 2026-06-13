@@ -1,5 +1,5 @@
 import { Form } from '@inertiajs/react';
-import AdminRoomsController from '@/actions/App/Http/Controllers/Admin/Rooms/AdminRoomsController';
+import AdminEditRoomsController from '@/actions/App/Http/Controllers/Admin/Rooms/AdminEditRoomsController';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import {
@@ -35,7 +35,7 @@ export default function UpdateRoomForm({
                 </DialogHeader>
 
                 <Form
-                    {...AdminRoomsController.updateRooms.form(room.id)}
+                    {...AdminEditRoomsController.updateRooms.form(room.id)}
                     options={{
                         preserveScroll: true,
                     }}
