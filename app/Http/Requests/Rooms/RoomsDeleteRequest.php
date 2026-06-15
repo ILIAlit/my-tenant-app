@@ -4,7 +4,7 @@ namespace App\Http\Requests\Rooms;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddRenterToRoomRequest extends FormRequest
+class RoomsDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,8 +17,7 @@ class AddRenterToRoomRequest extends FormRequest
     public function all($keys = null)
     {
         $data = parent::all($keys);
-        $data['room_id'] = $this->route('room_id');
-        $data['renter_id'] = $this->route('renter_id');
+        $data['id'] = $this->route('id');
         return $data;
     }
 
@@ -30,21 +29,15 @@ class AddRenterToRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_id' => 'required|integer|exists:rooms,id',
-            'renter_id' => 'required|integer|exists:users,id',
+            'id' => 'required|exists:rooms,id',
         ];
     }
 
-    /**
-     * Get custom validation messages.
-     */
     public function messages(): array
     {
         return [
-            'room_id.required' => 'ID комнаты обязателен',
-            'room_id.exists' => 'Комната не найдена',
-            'renter_id.required' => 'ID арендатора обязателен',
-            'renter_id.exists' => 'Арендатор не найден',
+            'id.required' => 'ID комнаты обязателен',
+            'id.exists' => 'Комната не найдена',
         ];
     }
 }

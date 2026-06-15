@@ -6,10 +6,11 @@ use App\Http\Controllers\Admin\Rooms\AdminRoomsController;
 use App\Enums\UserRole;
 
 Route::middleware([RoleMiddleware::class . ':' . UserRole::ADMIN->value])->group(function () {
-    Route::get('rooms', [AdminRoomsController::class, 'getRooms'])->name('rooms.get');
     Route::post('rooms', [AdminRoomsController::class, 'createRooms'])->name('rooms.create');
-    Route::put('rooms/{id}', [AdminRoomsController::class, 'updateRooms'])->name('rooms.update');
-    Route::delete('rooms/{id}', [AdminRoomsController::class, 'deleteRooms'])->name('rooms.delete');
+    Route::delete('rooms/{room}', [AdminRoomsController::class, 'deleteRooms'])->name('rooms.delete');
+    Route::put('rooms/{room}', [AdminRoomsController::class, 'updateRooms'])->name('rooms.update');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {});
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('rooms', [AdminRoomsController::class, 'getRooms'])->name('rooms.get');
+});

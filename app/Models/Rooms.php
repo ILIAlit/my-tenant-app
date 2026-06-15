@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
 
-#[Fillable(['number', 'floor', 'square', 'date_of_last_repair', 'notes', 'status', 'user_id'])]
+#[Fillable(['number', 'floor', 'square', 'date_of_last_repair', 'notes', 'status'])]
 class Rooms extends Model
 {
     use HasFactory;

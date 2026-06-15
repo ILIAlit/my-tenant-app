@@ -14,18 +14,21 @@ type PageProps = {
 
 export default function RoomsPage() {
     const page = usePage<PageProps>();
+    const { rooms: roomItems } = page.props;
     const { user } = page.props.auth;
 
     return (
         <>
             <Head title="Комнаты" />
-            <PageHeader
-                title="Комнаты"
-                description="Управление комнатами, статусом и информацией о ремонте"
-            />
-            {user.role === Role.Admin && <CreateRoomForm />}
+            <div className="p-4 lg:p-8">
+                <PageHeader
+                    title="Комнаты"
+                    description="Управление комнатами, статусом и информацией о ремонте"
+                />
+                {user.role === Role.Admin && <CreateRoomForm />}
 
-            <RoomsList />
+                <RoomsList roomItems={roomItems} />
+            </div>
         </>
     );
 }

@@ -20,14 +20,15 @@ export default function News() {
     return (
         <>
             <Head title="Объявления" />
-
-            <PageHeader
-                title="Объявления"
-                description="Важные сообщения и уведомления"
-            />
-            {user.role === Role.Admin && <CreateNewsForm />}
-            <div className="mt-6 mb-6 grid grid-cols-2 gap-6">
-                <NewsList newsItems={newsItems} />
+            <div className="p-4 lg:p-8">
+                <PageHeader
+                    title="Объявления"
+                    description="Важные сообщения и уведомления"
+                />
+                {user.role === Role.Admin && <CreateNewsForm />}
+                <div className="mt-6 mb-6 grid grid-cols-2 gap-6">
+                    <NewsList newsItems={newsItems} />
+                </div>
             </div>
         </>
     );
