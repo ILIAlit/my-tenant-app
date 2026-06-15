@@ -2,9 +2,10 @@
 
 namespace App\Observers;
 
-use App\Actions\Invoices\MonthlyInvoiceGenerator;
-use App\Enums\RoomStatus;
 use App\Models\Rooms;
+use App\Models\Invoices;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class RoomsObserver
 {
@@ -22,17 +23,25 @@ class RoomsObserver
     public function updated(Rooms $rooms): void
     {
         if (is_null($rooms->user_id)) {
-            if ($rooms->status !== RoomStatus::FREE->value) {
-                $rooms->updateQuietly(['status' => RoomStatus::FREE->value]);
-            }
-
-            return;
         }
+        if ($rooms->wasChanged('user_id') && !is_null($rooms->user_id)) {
 
-        if ($rooms->wasChanged('user_id')) {
-            app(MonthlyInvoiceGenerator::class)->createForCurrentPeriod($rooms);
+            $amenities = $rooms->amenities;
+            $totalPrice = $amenities->sum('price');
+            Invoices::create([
+                'user_id' => $rooms->user_id,
+                'name' => "Начисление за комнату № " . $rooms->number,
+                'total_price' => $totalPrice,
+                'due_date' => now()->addMonths()->format('d.m.Y'),
+                'create_date' => now()->format('d.m.Y'),
+            ]);
+            foreach ($amenities as $amenitiesItem) {
+            }
+            Log::info($amenities);
         }
     }
+
+
 
     /**
      * Handle the Rooms "deleted" event.

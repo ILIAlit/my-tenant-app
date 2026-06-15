@@ -23,14 +23,14 @@ export default function DeleteUser() {
         <div className="space-y-6">
             <Heading
                 variant="small"
-                title="Удаление аккаунта"
-                description="Удалить аккаунт и все связанные данные"
+                title="Delete account"
+                description="Delete your account and all of its resources"
             />
             <div className="space-y-4 rounded-lg border border-red-100 bg-red-50 p-4 dark:border-red-200/10 dark:bg-red-700/10">
                 <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
-                    <p className="font-medium">Внимание</p>
+                    <p className="font-medium">Warning</p>
                     <p className="text-sm">
-                        Действие необратимо. Продолжайте с осторожностью.
+                        Please proceed with caution, this cannot be undone.
                     </p>
                 </div>
 
@@ -40,17 +40,18 @@ export default function DeleteUser() {
                             variant="destructive"
                             data-test="delete-user-button"
                         >
-                            Удалить аккаунт
+                            Delete account
                         </Button>
                     </DialogTrigger>
                     <DialogContent>
                         <DialogTitle>
-                            Вы уверены, что хотите удалить аккаунт?
+                            Are you sure you want to delete your account?
                         </DialogTitle>
                         <DialogDescription>
-                            После удаления аккаунта все связанные данные будут
-                            безвозвратно удалены. Введите пароль для
-                            подтверждения.
+                            Once your account is deleted, all of its resources
+                            and data will also be permanently deleted. Please
+                            enter your password to confirm you would like to
+                            permanently delete your account.
                         </DialogDescription>
 
                         <Form
@@ -69,14 +70,14 @@ export default function DeleteUser() {
                                             htmlFor="password"
                                             className="sr-only"
                                         >
-                                            Пароль
+                                            Password
                                         </Label>
 
                                         <PasswordInput
                                             id="password"
                                             name="password"
                                             ref={passwordInput}
-                                            placeholder="Пароль"
+                                            placeholder="Password"
                                             autoComplete="current-password"
                                         />
 
@@ -91,7 +92,7 @@ export default function DeleteUser() {
                                                     resetAndClearErrors()
                                                 }
                                             >
-                                                Отмена
+                                                Cancel
                                             </Button>
                                         </DialogClose>
 
@@ -104,7 +105,7 @@ export default function DeleteUser() {
                                                 type="submit"
                                                 data-test="confirm-delete-user-button"
                                             >
-                                                Удалить аккаунт
+                                                Delete account
                                             </button>
                                         </Button>
                                     </DialogFooter>

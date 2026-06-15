@@ -14,27 +14,27 @@ import { store } from '@/routes/password/confirm';
 export default function ConfirmPassword() {
     return (
         <>
-            <Head title="Подтверждение пароля" />
+            <Head title="Confirm password" />
 
             <PasskeyVerify
                 routes={{
                     options: confirmOptions(),
                     submit: confirmStore(),
                 }}
-                label="Подтвердить с помощью passkey"
-                loadingLabel="Подтверждение..."
-                separator="Или подтвердите паролем"
+                label="Confirm with passkey"
+                loadingLabel="Confirming..."
+                separator="Or confirm with password"
             />
 
             <Form {...store.form()} resetOnSuccess={['password']}>
                 {({ processing, errors }) => (
                     <div className="space-y-6">
                         <div className="grid gap-2">
-                            <Label htmlFor="password">Пароль</Label>
+                            <Label htmlFor="password">Password</Label>
                             <PasswordInput
                                 id="password"
                                 name="password"
-                                placeholder="Пароль"
+                                placeholder="Password"
                                 autoComplete="current-password"
                                 autoFocus
                             />
@@ -49,7 +49,7 @@ export default function ConfirmPassword() {
                                 data-test="confirm-password-button"
                             >
                                 {processing && <Spinner />}
-                                Подтвердить пароль
+                                Confirm password
                             </Button>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ export default function ConfirmPassword() {
 }
 
 ConfirmPassword.layout = {
-    title: 'Подтверждение пароля',
+    title: 'Confirm password',
     description:
-        'Это защищённый раздел приложения. Подтвердите пароль, чтобы продолжить.',
+        'This is a secure area of the application. Please confirm your password before continuing.',
 };

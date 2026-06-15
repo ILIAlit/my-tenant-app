@@ -43,14 +43,13 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
                         )}
                     </div>
                     <p className="text-sm text-muted-foreground">
-                        Добавлен {passkey.created_at_diff}
+                        Added {passkey.created_at_diff}
                         {passkey.last_used_at_diff && (
                             <>
                                 <span className="mx-1 text-muted-foreground/50">
                                     /
                                 </span>
-                                Последнее использование{' '}
-                                {passkey.last_used_at_diff}
+                                Last used {passkey.last_used_at_diff}
                             </>
                         )}
                     </p>
@@ -65,25 +64,26 @@ export default function PasskeyItem({ passkey, onDelete }: Props) {
                         className="text-destructive hover:bg-destructive/10 hover:text-destructive"
                     >
                         <Trash2 className="h-4 w-4" />
-                        <span className="sr-only">Удалить</span>
+                        <span className="sr-only">Remove</span>
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
-                    <DialogTitle>Удалить passkey</DialogTitle>
+                    <DialogTitle>Remove passkey</DialogTitle>
                     <DialogDescription>
-                        Вы уверены, что хотите удалить passkey «{passkey.name}»?
-                        После удаления им нельзя будет войти в аккаунт.
+                        Are you sure you want to remove the "{passkey.name}"
+                        passkey? You will no longer be able to use it to sign
+                        in.
                     </DialogDescription>
                     <DialogFooter className="gap-2">
                         <DialogClose asChild>
-                            <Button variant="secondary">Отмена</Button>
+                            <Button variant="secondary">Cancel</Button>
                         </DialogClose>
                         <Button
                             variant="destructive"
                             onClick={handleDelete}
                             disabled={isDeleting}
                         >
-                            {isDeleting ? 'Удаление...' : 'Удалить passkey'}
+                            {isDeleting ? 'Removing...' : 'Remove passkey'}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

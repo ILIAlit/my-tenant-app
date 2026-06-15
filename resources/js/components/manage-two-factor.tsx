@@ -48,14 +48,15 @@ export default function ManageTwoFactor(props: Props) {
         <div className="space-y-6">
             <Heading
                 variant="small"
-                title="Двухфакторная аутентификация"
-                description="Управление двухфакторной аутентификацией"
+                title="Two-factor authentication"
+                description="Manage your two-factor authentication settings"
             />
             {twoFactorEnabled ? (
                 <div className="flex flex-col items-start justify-start space-y-4">
                     <p className="text-sm text-muted-foreground">
-                        При входе потребуется код из приложения-аутентификатора
-                        на вашем телефоне.
+                        You will be prompted for a secure, random pin during
+                        login, which you can retrieve from the TOTP-supported
+                        application on your phone.
                     </p>
 
                     <div className="relative inline">
@@ -66,7 +67,7 @@ export default function ManageTwoFactor(props: Props) {
                                     type="submit"
                                     disabled={processing}
                                 >
-                                    Отключить 2FA
+                                    Disable 2FA
                                 </Button>
                             )}
                         </Form>
@@ -81,15 +82,17 @@ export default function ManageTwoFactor(props: Props) {
             ) : (
                 <div className="flex flex-col items-start justify-start space-y-4">
                     <p className="text-sm text-muted-foreground">
-                        После включения двухфакторной аутентификации при входе
-                        потребуется код из приложения-аутентификатора.
+                        When you enable two-factor authentication, you will be
+                        prompted for a secure pin during login. This pin can be
+                        retrieved from a TOTP-supported application on your
+                        phone.
                     </p>
 
                     <div>
                         {hasSetupData ? (
                             <Button onClick={() => setShowSetupModal(true)}>
                                 <ShieldCheck />
-                                Продолжить настройку
+                                Continue setup
                             </Button>
                         ) : (
                             <Form
@@ -98,7 +101,7 @@ export default function ManageTwoFactor(props: Props) {
                             >
                                 {({ processing }) => (
                                     <Button type="submit" disabled={processing}>
-                                        Включить 2FA
+                                        Enable 2FA
                                     </Button>
                                 )}
                             </Form>

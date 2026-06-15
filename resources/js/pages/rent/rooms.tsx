@@ -4,6 +4,9 @@ import PageHeader from '@/components/ui/page-header';
 import rooms from '@/routes/rooms';
 
 export default function RenterRoomsPage() {
+    const page = usePage();
+    console.log(page);
+
     return (
         <>
             <PageHeader

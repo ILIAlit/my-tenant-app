@@ -1,70 +1,17 @@
-import { Link, router, usePage } from '@inertiajs/react';
-import { Edit, Search, Trash2 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { Input } from '@/components/ui/input';
+import { Link, usePage } from '@inertiajs/react';
+import { Edit, Trash2 } from 'lucide-react';
 import { Role } from '@/enum/auth';
 import rooms from '@/routes/rooms';
-import type { Rooms as RoomType } from '@/types';
-import type { Auth } from '@/types/auth';
-
-type RoomFilters = {
-    search: string;
-    status: string;
-};
+import type { Rooms as RoomType, User } from '@/types';
 
 type PageProps = {
-    auth: Auth;
+    auth: User;
     rooms: RoomType[];
-    filters?: RoomFilters;
 };
 
-const statusOptions = [
-    { value: '', label: 'Все статусы' },
-    { value: 'free', label: 'Свободна' },
-    { value: 'used', label: 'Занята' },
-    { value: 'repair', label: 'Ремонт' },
-];
-
 export default function RoomsList() {
-    const { auth, rooms: roomItems, filters } = usePage<PageProps>().props;
+    const { auth, rooms: roomItems } = usePage<PageProps>().props;
     const user = auth.user;
-    const isAdmin = user.role === Role.Admin;
-
-    const [search, setSearch] = useState(filters?.search ?? '');
-    const [status, setStatus] = useState(filters?.status ?? '');
-    const isFirstRender = useRef(true);
-
-    useEffect(() => {
-        if (!isAdmin) {
-            return;
-        }
-
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-
-            return;
-        }
-
-        const timeout = setTimeout(() => {
-            const query: Record<string, string> = {};
-
-            if (search.trim()) {
-                query.search = search.trim();
-            }
-
-            if (status) {
-                query.status = status;
-            }
-
-            router.get(rooms.get().url, query, {
-                preserveState: true,
-                preserveScroll: true,
-                replace: true,
-            });
-        }, 300);
-
-        return () => clearTimeout(timeout);
-    }, [search, status, isAdmin]);
 
     const getStatusBadge = (status: string) => {
         const statusMap: Record<
@@ -98,45 +45,10 @@ export default function RoomsList() {
         <>
             {' '}
             <div className="mt-6 rounded-xl border border-gray-200 bg-white">
-                <div className="flex flex-col gap-4 border-b border-gray-200 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="border-b border-gray-200 px-6 py-4">
                     <h3 className="font-medium">
                         Список комнат ({roomItems.length})
                     </h3>
-                    {isAdmin && (
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                            <div className="relative">
-                                <Search
-                                    size={16}
-                                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                                />
-                                <Input
-                                    type="search"
-                                    value={search}
-                                    onChange={(event) =>
-                                        setSearch(event.target.value)
-                                    }
-                                    placeholder="Поиск по номеру"
-                                    className="pl-9 sm:w-56"
-                                />
-                            </div>
-                            <select
-                                value={status}
-                                onChange={(event) =>
-                                    setStatus(event.target.value)
-                                }
-                                className="h-9 rounded-md border border-gray-300 bg-white px-3 text-sm"
-                            >
-                                {statusOptions.map((option) => (
-                                    <option
-                                        key={option.value}
-                                        value={option.value}
-                                    >
-                                        {option.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -171,11 +83,7 @@ export default function RoomsList() {
                                         colSpan={6}
                                         className="px-6 py-8 text-center text-gray-500"
                                     >
-                                        {search.trim() || status
-                                            ? 'Комнаты не найдены'
-                                            : isAdmin
-                                              ? 'Нет добавленных комнат'
-                                              : 'У вас пока нет арендованных комнат'}
+                                        Нет добавленных комнат
                                     </td>
                                 </tr>
                             ) : (

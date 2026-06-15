@@ -23,18 +23,18 @@ export default function TwoFactorChallenge() {
     }>(() => {
         if (showRecoveryInput) {
             return {
-                title: 'Код восстановления',
+                title: 'Recovery code',
                 description:
-                    'Подтвердите доступ к аккаунту, введя один из резервных кодов восстановления.',
-                toggleText: 'войти с кодом аутентификации',
+                    'Please confirm access to your account by entering one of your emergency recovery codes.',
+                toggleText: 'login using an authentication code',
             };
         }
 
         return {
-            title: 'Код аутентификации',
+            title: 'Authentication code',
             description:
-                'Введите код из приложения-аутентификатора.',
-            toggleText: 'войти с кодом восстановления',
+                'Enter the authentication code provided by your authenticator application.',
+            toggleText: 'login using a recovery code',
         };
     }, [showRecoveryInput]);
 
@@ -51,7 +51,7 @@ export default function TwoFactorChallenge() {
 
     return (
         <>
-            <Head title="Двухфакторная аутентификация" />
+            <Head title="Two-factor authentication" />
 
             <div className="space-y-6">
                 <Form
@@ -67,7 +67,7 @@ export default function TwoFactorChallenge() {
                                     <Input
                                         name="recovery_code"
                                         type="text"
-                                        placeholder="Введите код восстановления"
+                                        placeholder="Enter recovery code"
                                         autoFocus={showRecoveryInput}
                                         required
                                     />
@@ -109,11 +109,11 @@ export default function TwoFactorChallenge() {
                                 className="w-full"
                                 disabled={processing}
                             >
-                                Продолжить
+                                Continue
                             </Button>
 
                             <div className="text-center text-sm text-muted-foreground">
-                                <span>или вы можете </span>
+                                <span>or you can </span>
                                 <button
                                     type="button"
                                     className="cursor-pointer text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"

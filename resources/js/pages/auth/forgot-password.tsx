@@ -1,3 +1,4 @@
+// Components
 import { Form, Head } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import InputError from '@/components/input-error';
@@ -11,7 +12,7 @@ import { email } from '@/routes/password';
 export default function ForgotPassword({ status }: { status?: string }) {
     return (
         <>
-            <Head title="Восстановление пароля" />
+            <Head title="Forgot password" />
 
             {status && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
@@ -24,7 +25,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                     {({ processing, errors }) => (
                         <>
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Электронная почта</Label>
+                                <Label htmlFor="email">Email address</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -46,7 +47,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
                                     {processing && (
                                         <LoaderCircle className="h-4 w-4 animate-spin" />
                                     )}
-                                    Отправить ссылку для сброса
+                                    Email password reset link
                                 </Button>
                             </div>
                         </>
@@ -54,8 +55,8 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 </Form>
 
                 <div className="space-x-1 text-center text-sm text-muted-foreground">
-                    <span>Или вернуться к</span>
-                    <TextLink href={login()}>входу</TextLink>
+                    <span>Or, return to</span>
+                    <TextLink href={login()}>log in</TextLink>
                 </div>
             </div>
         </>
@@ -63,6 +64,6 @@ export default function ForgotPassword({ status }: { status?: string }) {
 }
 
 ForgotPassword.layout = {
-    title: 'Восстановление пароля',
-    description: 'Введите email, чтобы получить ссылку для сброса пароля',
+    title: 'Forgot password',
+    description: 'Enter your email to receive a password reset link',
 };

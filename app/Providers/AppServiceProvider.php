@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Rooms;
-use App\Observers\RoomsObserver;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
-        Rooms::observe(RoomsObserver::class);
+        \App\Models\Rooms::observe(\App\Observers\RoomsObserver::class);
     }
 
     /**
@@ -36,20 +34,18 @@ class AppServiceProvider extends ServiceProvider
     {
         Date::use(CarbonImmutable::class);
 
-        CarbonImmutable::setLocale(config('app.locale', 'ru'));
-
         DB::prohibitDestructiveCommands(
             app()->isProduction(),
         );
 
         Password::defaults(
-            fn (): ?Password => app()->isProduction()
+            fn(): ?Password => app()->isProduction()
                 ? Password::min(12)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-                    ->uncompromised()
+                ->mixedCase()
+                ->letters()
+                ->numbers()
+                ->symbols()
+                ->uncompromised()
                 : null,
         );
     }

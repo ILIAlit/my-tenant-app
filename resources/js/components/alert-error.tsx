@@ -11,7 +11,7 @@ export default function AlertError({
     return (
         <Alert variant="destructive">
             <AlertCircleIcon />
-            <AlertTitle>{title || 'Что-то пошло не так.'}</AlertTitle>
+            <AlertTitle>{title || 'Something went wrong.'}</AlertTitle>
             <AlertDescription>
                 <ul className="list-inside list-disc text-sm">
                     {Array.from(new Set(errors)).map((error, index) => (

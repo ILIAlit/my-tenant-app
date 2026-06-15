@@ -5,8 +5,3 @@ export type * from './news/news';
 export type * from './rooms/rooms';
 export type * from './amenities/amenities';
 export type * from './invoices/invoices';
-export type * from './payments/payments';
-export type * from './contracts/contracts';
-export type * from './utility-readings/utility-readings';
-export type * from './utility-readings/utility-tariffs';
-export type * from './notifications/notifications';
