@@ -14,7 +14,6 @@ import {
 import { dashboard } from '@/routes';
 import news from '@/routes/news';
 import renters from '@/routes/renters';
-import rooms from '@/routes/rooms';
 import type { NavItem } from '@/types';
 
 export const mainAdminNavItems: NavItem[] = [
@@ -24,8 +23,8 @@ export const mainAdminNavItems: NavItem[] = [
         icon: Home,
     },
     {
-        title: 'Комнаты',
-        href: rooms.get(),
+        title: 'Квартиры',
+        href: dashboard(),
         icon: Building2,
     },
     {

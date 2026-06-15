@@ -1,7 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
-import { Edit, Eye, Trash2 } from 'lucide-react';
+import { Edit, Eye, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import PageHeader from '@/components/ui/page-header';
 import renters from '@/routes/renters';
 import type { User } from '@/types';
 //import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
@@ -17,10 +16,20 @@ export default function Dashboard() {
         <>
             <Head title="Dashboard" />
             <div className="p-8">
-                <PageHeader
-                    title="Арендаторы"
-                    description="Управление арендаторами и контактами"
-                />
+                <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div>
+                        <h1 className="mb-2 text-2xl font-semibold">
+                            Арендаторы
+                        </h1>
+                        <p className="text-gray-400">
+                            Управление арендаторами и контактами
+                        </p>
+                    </div>
+                    <Button>
+                        <Plus size={20} />
+                        Добавить арендатора
+                    </Button>
+                </div>
 
                 <div className="rounded-xl border border-gray-200 bg-white">
                     <div className="border-b border-gray-200 px-6 py-4">
