@@ -49,6 +49,7 @@ class AdminEditRoomsController extends Controller
 
         return Inertia::render('admin/room-update/update', [
             'room' => $room,
+            'renters' => Inertia::optional(fn() => User::where('role', UserRole::RENTER)->get()),
         ]);
     }
 

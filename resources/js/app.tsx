@@ -6,7 +6,6 @@ import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import RoomsLayout from '@/layouts/rooms/layout';
 import SettingsLayout from '@/layouts/settings/layout';
-import RentLayout from './layouts/rent/layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -22,8 +21,6 @@ createInertiaApp({
                 return [AppLayout, SettingsLayout];
             case name.startsWith('admin/room-update'):
                 return [AppLayout, RoomsLayout];
-            case name.startsWith('rent/'):
-                return [AppLayout, RentLayout];
             default:
                 return AppLayout;
         }

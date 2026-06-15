@@ -20,6 +20,7 @@ export default function RoomsLayout({ children }: PropsWithChildren) {
     const page = usePage<PageProps>();
     const { room } = page.props;
     const roomId = room.id;
+    console.log(roomId);
 
     const sidebarNavItems: NavItem[] = [
         {

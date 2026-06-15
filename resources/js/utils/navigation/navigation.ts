@@ -3,7 +3,6 @@ import {
     Building2,
     Users,
     FileText,
-    CircleDollarSign,
     // CreditCard,
     // Activity,
     // DollarSign,
@@ -56,11 +55,6 @@ export const mainRenterNavItems: NavItem[] = [
         title: 'Главная',
         href: dashboard(),
         icon: Home,
-    },
-    {
-        title: 'Аренда',
-        href: rooms.getRenterRooms(),
-        icon: CircleDollarSign,
     },
     {
         title: 'Объявления',
