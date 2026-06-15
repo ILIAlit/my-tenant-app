@@ -5,9 +5,8 @@ import PageHeader from '@/components/ui/page-header';
 import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cn, toUrl } from '@/lib/utils';
-import amenities from '@/routes/amenities';
+import { edit as editAppearance } from '@/routes/appearance';
 import rooms from '@/routes/rooms';
-
 import {} from '@/routes/security';
 import type { NavItem, Rooms } from '@/types';
 
@@ -35,7 +34,7 @@ export default function RoomsLayout({ children }: PropsWithChildren) {
         },
         {
             title: 'Добавить услуги',
-            href: amenities.get(roomId),
+            href: editAppearance(),
             icon: null,
         },
     ];
