@@ -14,7 +14,6 @@ use Laravel\Fortify\PasskeyAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Models\News;
 use App\Models\Rooms;
-use App\Models\Invoices;
 use App\Enums\UserRole;
 
 #[Fillable(['name', 'email', 'password', 'role', 'login', 'last_name', 'middle_name', 'phone'])]
@@ -46,11 +45,6 @@ class User extends Authenticatable implements PasskeyUser
     public function rooms()
     {
         return $this->hasMany(Rooms::class);
-    }
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoices::class);
     }
 
     public function isAdmin(): bool
