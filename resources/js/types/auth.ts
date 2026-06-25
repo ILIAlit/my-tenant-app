@@ -1,3 +1,5 @@
+import { Room } from "./rooms/room";
+
 export type User = {
     id: number;
     name: string;
@@ -13,6 +15,7 @@ export type User = {
     created_at: string;
     updated_at: string;
     [key: string]: unknown;
+    room: Room | null;
 };
 
 export type Auth = {

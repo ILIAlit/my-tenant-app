@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -42,6 +43,24 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'notifications' => fn () => $request->user()
+                ? [
+                    'unread_count' => $request->user()->unreadNotifications()->count(),
+                    'items' => $request->user()
+                        ->unreadNotifications()
+                        ->latest()
+                        ->limit(15)
+                        ->get()
+                        ->map(fn (DatabaseNotification $notification): array => [
+                            'id' => $notification->id,
+                            'type' => $notification->data['type'] ?? 'info',
+                            'title' => $notification->data['title'] ?? '',
+                            'message' => $notification->data['message'] ?? '',
+                            'url' => $notification->data['url'] ?? null,
+                            'created_at' => $notification->created_at->toIso8601String(),
+                        ]),
+                ]
+                : null,
         ];
     }
 }

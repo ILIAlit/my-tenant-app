@@ -8,14 +8,15 @@ export default function AppSidebarLayout({
     children,
     breadcrumbs = [],
 }: AppLayoutProps) {
-    console.log(breadcrumbs);
-
     return (
         <AppShell variant="sidebar">
             <AppSidebar />
             <AppContent variant="sidebar" className="overflow-x-hidden">
                 <AppSidebarHeader breadcrumbs={breadcrumbs} />
+                <div className="p-4 pt-2 lg:p-6 lg:pt-3">
+
                 {children}
+                </div>
             </AppContent>
         </AppShell>
     );

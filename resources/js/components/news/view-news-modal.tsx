@@ -7,10 +7,10 @@ import {
     DialogFooter,
     DialogClose,
 } from '@/components/ui/dialog';
-import type { News } from '@/types/news/news';
+import type { DashboardNewsItem } from '@/types';
 
 type ViewNewsModalProps = {
-    news: News | null;
+    news: DashboardNewsItem | null;
     open: boolean;
     onOpenChange: (open: boolean) => void;
 };

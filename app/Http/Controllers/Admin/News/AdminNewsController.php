@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\NewsCreateRequest;
 use App\Http\Requests\News\NewsDeleteRequest;
 use App\Http\Requests\News\NewsUpdateRequest;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Log;
 use App\Models\News;
+use App\Models\User;
+use App\Notifications\NewsPublishedNotification;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Notification;
+use Inertia\Inertia;
 
 class AdminNewsController extends Controller
 {
@@ -22,6 +23,9 @@ class AdminNewsController extends Controller
         $news->date = Carbon::parse($news->date)->format('Y-m-d');
 
         $user->news()->save($news);
+
+        $recipients = User::query()->whereKeyNot($user->id)->get();
+        Notification::send($recipients, new NewsPublishedNotification($news));
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Объявление создано.')]);
 

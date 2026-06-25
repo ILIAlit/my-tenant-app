@@ -42,14 +42,15 @@ trait ProfileValidationRules
      */
     protected function fioRules(): array
     {
-        return ['string', 'max:255'];
+        return ['nullable', 'string', 'max:255'];
     }
 
     protected function phoneRules(): array
     {
         return [
+            'nullable',
             'string',
-            'regex:/^\+375(25|29|33|44)\d{7}$/'
+            'regex:/^\+375(25|29|33|44)\d{7}$/',
         ];
     }
 

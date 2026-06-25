@@ -4,10 +4,11 @@ namespace App\Actions\Fortify;
 
 use App\Concerns\PasswordValidationRules;
 use App\Concerns\ProfileValidationRules;
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use App\Enums\UserRole;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -21,13 +22,24 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            ...$this->profileRules(),
+            'name' => ['required', 'string', 'max:255'],
+            'email' => $this->emailRules(),
             'password' => $this->passwordRules(),
         ])->validate();
+
+        $loginBase = Str::slug(Str::before($input['email'], '@'), '_') ?: 'user';
+        $login = $loginBase;
+        $suffix = 1;
+
+        while (User::query()->where('login', $login)->exists()) {
+            $login = $loginBase.'_'.$suffix;
+            $suffix++;
+        }
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'login' => $login,
             'password' => $input['password'],
             'role' => UserRole::RENTER,
         ]);

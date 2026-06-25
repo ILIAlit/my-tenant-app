@@ -19,7 +19,7 @@ export default function News() {
     return (
         <>
             <Head title="Объявления" />
-            <div className="p-4 lg:p-8">
+            
                 <div>
                     <h1 className="mb-2 text-2xl font-semibold">Объявления</h1>
                     <p className="text-gray-400">
@@ -30,7 +30,7 @@ export default function News() {
                 <div className="mt-6 mb-6 grid grid-cols-2 gap-6">
                     <NewsList newsItems={newsItems} />
                 </div>
-            </div>
+           
         </>
     );
 }
